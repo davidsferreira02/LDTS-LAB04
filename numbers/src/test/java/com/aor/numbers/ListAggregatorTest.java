@@ -8,12 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ListAggregatorTest {
-    List<Integer>list;
+    List<Integer> list;
+
     @BeforeEach
-    public void Helper(){
-        list=Arrays.asList(1,2,4,2,5);
+    public void Helper() {
+         list=Arrays.asList(1,2,4,2,5);
+
 
     }
+
     @Test
     public void sum() {
         //List<Integer> list = Arrays.asList(1,2,4,2,5);
@@ -28,15 +31,21 @@ public class ListAggregatorTest {
     public void max() {
         //List<Integer> list = Arrays.asList(1,2,4,2,5);
 
-        ListAggregator aggregator = new ListAggregator();
-        int max = aggregator.max(list);
+        //ListAggregator aggregator = new ListAggregator();
+        int max = list.get(0);
+        for(int number:list){
+            if(max<number){
+                max=number;
+            }
+        }
+
 
         Assertions.assertEquals(5, max);
     }
 
     @Test
     public void min() {
-       // List<Integer> list = Arrays.asList(1,2,4,2,5);
+        // List<Integer> list = Arrays.asList(1,2,4,2,5);
 
         ListAggregator aggregator = new ListAggregator();
         int min = aggregator.min(list);
@@ -46,11 +55,24 @@ public class ListAggregatorTest {
 
     @Test
     public void distinct() {
-       // List<Integer> list = Arrays.asList(1,2,4,2,5);
+        // List<Integer> list = Arrays.asList(1,2,4,2,5);
 
         ListAggregator aggregator = new ListAggregator();
         int distinct = aggregator.distinct(list);
 
         Assertions.assertEquals(4, distinct);
     }
+    @Test
+    public void Max_bug7263() {
+        List<Integer> list_bug = Arrays.asList(-1,-4,-5);
+        //ListAggregator aggregator = new ListAggregator();
+        int max = list_bug.get(0);
+        for(int number:list_bug){
+            if(max<number){
+                max=number;
+            }
+        }
+        Assertions.assertEquals(-1,max);
+    }
+
 }
