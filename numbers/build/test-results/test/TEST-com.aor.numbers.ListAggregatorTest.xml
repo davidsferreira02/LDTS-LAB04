@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.aor.numbers.ListAggregatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-11T10:28:58" hostname="LAPTOP-E57OMIBJ" time="0.026">
+<testsuite name="com.aor.numbers.ListAggregatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-11T10:49:20" hostname="LAPTOP-E57OMIBJ" time="0.023">
   <properties/>
-  <testcase name="max()" classname="com.aor.numbers.ListAggregatorTest" time="0.026"/>
+  <testcase name="distinct()" classname="com.aor.numbers.ListAggregatorTest" time="0.023"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

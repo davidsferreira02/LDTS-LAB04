@@ -1,5 +1,7 @@
 package com.aor.numbers;
 
+import sun.net.www.content.text.Generic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
  * An utility class that removes duplicate numbers
  * from a list.
  */
-public class ListDeduplicator {
+public class ListDeduplicator implements GenericListDeduplicator {
 
     /**
      * Removes duplicate numbers from a list.

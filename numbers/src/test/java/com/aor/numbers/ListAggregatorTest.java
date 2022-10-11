@@ -51,11 +51,17 @@ public class ListAggregatorTest {
     @Test
     public void distinct() {
         // List<Integer> list = Arrays.asList(1,2,4,2,5);
-
+        class StubListDeduplicator implements GenericListDeduplicator {
+            @Override
+            public List<Integer> deduplicate(List<Integer> list) {
+                return Arrays.asList(1, 2, 4, 5);
+            }
+        }
         ListAggregator aggregator = new ListAggregator();
-        int distinct = aggregator.distinct(list);
+            StubListDeduplicator deduplicator=new StubListDeduplicator();
+        int distinct = aggregator.distinct(list,deduplicator);
 
-        Assertions.assertEquals(4, distinct);
+        Assertions.assertEquals(4,distinct);
     }
     @Test
     public void Max_bug7263() {
