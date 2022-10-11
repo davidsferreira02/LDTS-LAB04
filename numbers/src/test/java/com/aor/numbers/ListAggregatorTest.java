@@ -31,13 +31,8 @@ public class ListAggregatorTest {
     public void max() {
         //List<Integer> list = Arrays.asList(1,2,4,2,5);
 
-        //ListAggregator aggregator = new ListAggregator();
-        int max = list.get(0);
-        for(int number:list){
-            if(max<number){
-                max=number;
-            }
-        }
+        ListAggregator aggregator = new ListAggregator();
+        int max = aggregator.max(list);
 
 
         Assertions.assertEquals(5, max);
