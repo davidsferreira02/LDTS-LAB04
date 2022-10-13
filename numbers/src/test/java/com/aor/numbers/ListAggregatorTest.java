@@ -77,7 +77,7 @@ public class ListAggregatorTest {
         List<Integer> list_bug = Arrays.asList(1, 2, 4, 2);
         class StubListDeduplicator implements GenericListDeduplicator{
             @Override public List<Integer> deduplicate(List<Integer> list) {
-                return  Arrays.asList(1, 2, 4);
+                return  Arrays.asList(1,2,4);
             }
         }
         ListAggregator aggregator = new ListAggregator();

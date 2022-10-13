@@ -1,13 +1,7 @@
 package com.aor.numbers;
 
-import sun.net.www.content.text.Generic;
-
 import java.util.List;
 
-/**
- * A utility class that aggregates list of numbers
- * into a single integer using various functions.
- */
 public class ListAggregator {
     /**
      * Sums all numbers in a list.
