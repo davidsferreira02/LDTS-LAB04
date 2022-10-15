@@ -11,8 +11,8 @@ public class ListSorterTest {
     private List<Integer> list;
 
     @BeforeEach
-    public void getTestList(){
-        list = Arrays.asList(1,2,4,2);
+    public void getTestList() {
+        list = Arrays.asList(1, 2, 4, 2);
     }
 
     @Test

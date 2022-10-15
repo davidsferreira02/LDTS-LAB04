@@ -3,6 +3,7 @@ package com.aor.numbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,18 +11,19 @@ import java.util.List;
 public class ListDeduplicatorTest {
     List<Integer> list;
     List<Integer> expected;
+
     @BeforeEach
-    public void Helper(){
-        list= Arrays.asList(1,2,4,2,5);
-        expected = Arrays.asList(1,2,4,5);
+    public void Helper() {
+        list = Arrays.asList(1, 2, 4, 2, 5);
+        expected = Arrays.asList(1, 2, 4, 5);
     }
 
     @Test
     public void deduplicate() {
-        class StubListSorter implements GenericListSorter{
+        class StubListSorter implements GenericListSorter {
             @Override
             public List<Integer> sort(List<Integer> list) {
-                return  Arrays.asList(1, 2, 4, 5);
+                return Arrays.asList(1, 2, 4, 5);
             }
         }
 
@@ -31,14 +33,16 @@ public class ListDeduplicatorTest {
 
         Assertions.assertEquals(expected, distinct);
     }
+
     @Test
     public void bug_deduplicate_8726() {
-        List<Integer> list = Arrays.asList(1,2,4,2);
-        List<Integer> expected = Arrays.asList(1,2,4);
+        List<Integer> list = Arrays.asList(1, 2, 4, 2);
+        List<Integer> expected = Arrays.asList(1, 2, 4);
 
-        class StubListSorter implements GenericListSorter{
-            @Override public List<Integer> sort(List<Integer> list) {
-                return  Arrays.asList(1, 2, 2, 4);
+        class StubListSorter implements GenericListSorter {
+            @Override
+            public List<Integer> sort(List<Integer> list) {
+                return Arrays.asList(1, 2, 2, 4);
             }
         }
 
@@ -48,7 +52,6 @@ public class ListDeduplicatorTest {
 
         Assertions.assertEquals(expected, distinct);
     }
-
 
 
 }
