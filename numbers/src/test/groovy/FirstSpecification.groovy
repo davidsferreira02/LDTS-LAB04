@@ -1,8 +1,12 @@
 import com.aor.numbers.DivisibleByFilter
+import com.aor.numbers.GenericListFilter
+import com.aor.numbers.GenericListSorter
 import com.aor.numbers.ListAggregator
 import com.aor.numbers.ListDeduplicator
+import com.aor.numbers.ListFilterer
 import com.aor.numbers.ListSorter
 import com.aor.numbers.PositiveFilter
+import org.mockito.Mock
 import spock.lang.Specification
 
 
@@ -115,10 +119,96 @@ class ListAggregatorSpockTest extends Specification {
     }
 }
 
-class ListFiltererSpockTest extends Specification{
+class ListDeduplicatorSpockTest extends Specification {
+    private def list
+    private def expected
 
+    def setup() {
+        list = Arrays.asList(1,2,4,2,5)
+        expected = Arrays.asList(1,2,4,5)
+    }
+
+    def 'Testing deduplicate'() {
+        given:
+        GenericListSorter sorter = Mock(GenericListSorter.class)
+        def deduplicator = new ListDeduplicator(sorter)
+
+        sorter.sort(_) >> Arrays.asList(1, 2, 2, 4, 5)
+
+        when:
+        def distinct = deduplicator.deduplicate(list)
+
+        then:
+        expected == distinct;
+    }
+
+    def 'Testing deduplicate bug 8726'() {
+        given:
+        def sorter = Mock(GenericListSorter.class)
+        def deduplicator = new ListDeduplicator(sorter)
+
+        sorter.sort(_) >> Arrays.asList(1, 2, 2, 4)
+
+        when:
+        def distinct = deduplicator.deduplicate(Arrays.asList(1, 2, 4, 2))
+
+        then:
+        Arrays.asList(1, 2, 4) == distinct
+    }
 }
 
+
+class ListFiltererSpockTest extends Specification {
+    def 'Testing: filter'() {
+        given:
+        def filter = Mock(GenericListFilter.class)
+
+        filter.accept(1) >> true
+        filter.accept(2) >> false
+        filter.accept(3) >> true
+        filter.accept(4) >> false
+        filter.accept(5) >> true
+
+        when:
+        def filterer = new ListFilterer(filter);
+
+        then:
+        Arrays.asList(1, 3, 5) == filterer.filter(Arrays.asList(1, 2, 3, 4, 5))
+    }
+}
+
+class ListSorterSpockTest extends Specification {
+    private def list
+    private def expected
+
+    def setup() {
+        list = Arrays.asList(3, 2, 6, 1, 4, 5, 7)
+        expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7)
+    }
+
+    def 'Testing: sort'() {
+        given:
+        def sorter = new ListSorter();
+
+        when:
+        def sorted = sorter.sort(list);
+
+        then:
+        expected == sorted;
+    }
+
+
+    def 'Testing deduplicate bug 8726'() {
+        given:
+        def sorter = new ListSorter();
+
+        when:
+        def sorted = sorter.sort(Arrays.asList(1, 2, 4, 2))
+
+        then:
+        Arrays.asList(1, 2, 2, 4) == sorted;
+    }
+}
 
 class PositiveFilterSpockTest extends Specification{
 

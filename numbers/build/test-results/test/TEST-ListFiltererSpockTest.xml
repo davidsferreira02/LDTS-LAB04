@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ListFiltererSpockTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2022-11-05T23:11:13" hostname="LAPTOP-E57OMIBJ" time="0.885">
+  <properties/>
+  <testcase name="List Filter" classname="ListFiltererSpockTest" time="0.885">
+    <failure message="groovy.lang.MissingMethodException: No signature of method: jdk.proxy3.$Proxy19.call() is applicable for argument types: (ArrayList) values: [[1, 2, 3, 4, 5]]&#10;Possible solutions: wait(), any(), wait(long), any(groovy.lang.Closure), tap(groovy.lang.Closure), each(groovy.lang.Closure)" type="groovy.lang.MissingMethodException">groovy.lang.MissingMethodException: No signature of method: jdk.proxy3.$Proxy19.call() is applicable for argument types: (ArrayList) values: [[1, 2, 3, 4, 5]]
+Possible solutions: wait(), any(), wait(long), any(groovy.lang.Closure), tap(groovy.lang.Closure), each(groovy.lang.Closure)
+	at ListFiltererSpockTest.List Filter(FirstSpecification.groovy:128)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
